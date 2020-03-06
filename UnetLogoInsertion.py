@@ -271,7 +271,7 @@ class UnetLogoInsertion(BannerReplacer):
             x_train_file = x_train_path + file
             id_, _ = file.split('.')
             y_train_file = y_train_path + id_ + '.npy'
-            x = cv2.imread(x_train_file, cv2.IMREAD_UNCHANGED)
+            x = cv2.imread(x_train_file)
             y = np.load(y_train_file)
             y_ = np.expand_dims(y, axis=-1)
             x_train[n] = x

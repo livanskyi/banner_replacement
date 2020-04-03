@@ -84,7 +84,7 @@ def detect_masks(frame, model=model):
 	classes = result[0]['class_ids']
 
 	# returning binary mask and classes
-	return mask, contours[0]
+	return mask, classes
 
 
 

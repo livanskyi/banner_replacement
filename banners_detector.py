@@ -30,32 +30,32 @@ from keras.preprocessing.image import img_to_array
 
 
 class myMaskRCNNConfig(Config):
-    # give the configuration a recognizable name
-    NAME = "MaskRCNN_config"
-    
-    # set the number of GPUs to use along with the number of images
-    # per GPU
-    GPU_COUNT = 1
-    IMAGES_PER_GPU = 1
- 
-    # number of classes (we would normally add +1 for the background)
-    NUM_CLASSES = 1+8
-   
-    # Number of training steps per epoch
-    STEPS_PER_EPOCH = 1000
-    VALIDATION_STEPS = 200
+	# give the configuration a recognizable name
+	NAME = "MaskRCNN_config"
 
-    # network
-    BACKBONE = "resnet50"
-    
-    # Learning rate
-    LEARNING_RATE=0.006
-    
-    # Skip detections with < 90% confidence
-    DETECTION_MIN_CONFIDENCE = 0.9
-    
-    # setting Max ground truth instances
-    MAX_GT_INSTANCES=10
+	# set the number of GPUs to use along with the number of images
+	# per GPU
+	GPU_COUNT = 1
+	IMAGES_PER_GPU = 1
+
+	# number of classes (we would normally add +1 for the background)
+	NUM_CLASSES = 1+8
+
+	# Number of training steps per epoch
+	STEPS_PER_EPOCH = 1000
+	VALIDATION_STEPS = 200
+
+	# network
+	BACKBONE = "resnet50"
+
+	# Learning rate
+	LEARNING_RATE=0.006
+
+	# Skip detections with < 90% confidence
+	DETECTION_MIN_CONFIDENCE = 0.9
+
+	# setting Max ground truth instances
+	MAX_GT_INSTANCES=10
 
 
 if __name__ == '__main__':
@@ -71,20 +71,20 @@ if __name__ == '__main__':
 
 def detect_masks(frame, model=model):
     
-    # convert frame for prediction
-    frame_res = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB).astype(np.float32)
-    
-    # detecting objects in the image
-    result = model.detect([frame_res])
+	# convert frame for prediction
+	frame_res = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB).astype(np.float32)
 
-    # bool type mask
-    mask = result[0]['masks']
-    
-    # classes
-    classes = result[0]['class_ids']
+	# detecting objects in the image
+	result = model.detect([frame_res])
 
-    # returning binary mask and classes
-    return mask, contours[0]
+	# bool type mask
+	mask = result[0]['masks']
+
+	# classes
+	classes = result[0]['class_ids']
+
+	# returning binary mask and classes
+	return mask, contours[0]
 
 
 
